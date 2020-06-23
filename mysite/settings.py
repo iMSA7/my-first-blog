@@ -52,7 +52,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
-STATIC_ROOT = 'blog/static'
+STATIC_ROOT = 'static'
 
 TEMPLATES = [
     {
