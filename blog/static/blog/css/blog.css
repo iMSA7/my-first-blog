@@ -3,7 +3,7 @@ h1 a, h2 a {
     font-family: 'Lobster';
 }
 .page-header {
-    background-color: #C25100;
+    background-color: #FF0000;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -24,6 +24,7 @@ h1, h2, h3, h4 {
 
 .date {
     color: #828282;
+    font-family: 'Lobster';
 }
 
 .save {
@@ -42,7 +43,7 @@ h1, h2, h3, h4 {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 140px;
 }
 
 .post h2 a, .post h2 a:visited {
