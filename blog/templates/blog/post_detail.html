@@ -1,18 +1,19 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        <div class="editB">
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+    {% endif %}
     <div class="post">
         {% if post.published_date %}
             <div class="date">
-                last updated: {{ post.published_date }}
+                {{ post.published_date|timesince }} ago.
             </div>
         {% endif %}
-        
-        {% if user.is_authenticated %}
-     		<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-		{% endif %}
 
-        <h2>{{ post.title }}</h2>
+        <h1>{{ post.title|title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
 {% endblock %}
