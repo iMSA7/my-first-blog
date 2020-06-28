@@ -2,14 +2,13 @@
 
 <html>
     <head>
-	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
 
         <title>Muhannad Alghafis</title>
 
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <style>
     body {
         background-image: url("{% static 'blog/images/background.jpg' %}");
@@ -25,23 +24,21 @@
     </head>
     <body>
         <div class="page-header">
-			{% if user.is_authenticated %}
-    			<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-			{% endif %}
-			<h1><a href="/">Muhannad Alghafis</a></h1>
-		</div>
-
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                        {% endif %}
+                        <h1><a href="/">Muhannad Alghafis</a></h1>
+                </div>
         <div class="personal_details">
             <div class="frame">
-                <img src="{% static 'blog/images/me.jpg' %}" alt="me">
+                <img src="{% static 'blog/images/me.JPG' %}" alt="me">
             </div>
-
             <div class="datails_frame">
-                <strong style="font-family: arial; margin-left: 100px;">Personal Details:</strong>
+                <strong style="font-family: arial; margin-left: 25%;">Personal Details:</strong>
                 <p><b>Name:<br></b></p>
                 <p>Muhannad S Alghafis</p>
                 <p><b>Course Title:<br></b></p>
-                <p>Artificial Intellegence & Computer Science</p>
+                <p>Artificial Intelligence & Computer Science</p>
                 <p><b>Personal Email:<br></b></p>
                 <p>mohnad998@gmail.com</p>
                 <p><b>University Email:<br></b></p>
@@ -50,15 +47,13 @@
                 <p><a href="https://github.com/iMSA7/my-first-blog">https://github.com/iMSA7/my-first-blog</a></p>
             </div>
         </div>
-
-		<div class="content container">
-        	<div class="row">
-        	    <div class="col-md-8">
-        	    {% block content %}
-        	    {% endblock %}
-        	    </div>
-        	</div>
-    	</div>
-
+                <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>
+        </div>
     </body>
 </html>

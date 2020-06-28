@@ -1,14 +1,18 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.published_date|timesince }} ago.
+    {% if posts %}
+        {% for post in posts %}
+            <div class="post">
+                <div class="date">
+                    {{ post.published_date|timesince }} ago.
+                </div>
+                <h2><a href="{% url 'post_detail' pk=post.pk %}"> <b>{{ post.title|title }}</b></a></h2>
+                <p>{{ post.text|truncatewords:10 }}</p>
+                <hr>
             </div>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}"> <b>{{ post.title|title }}</b></a></h2>
-            <p>{{ post.text|truncatewords:5 }}</p>
-            <hr>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+    <h1>More posts are coming soon</h1>
+    {% endif %}
 {% endblock %}

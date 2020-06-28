@@ -1,9 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
     <h2 style="font-size: 26pt;font-family: 'arial';">New Post</h2>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
+{% else %}
+	<h1 style="color: red">You are not Authorised</h1>
+{% endif %}
 {% endblock %}

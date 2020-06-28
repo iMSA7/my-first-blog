@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
     <h2 style="font-size: 26pt;font-family: 'arial';">Edit Post</h2>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
@@ -9,4 +10,7 @@
     <form action="delete/" method="post">{% csrf_token %}
     	<button type="submit" class="delete btn btn-default">Delete</button>
 	</form>
+{% else %}
+	<h1 style="color: red">You are not Authorised</h1>
+{% endif %}
 {% endblock %}
