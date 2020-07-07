@@ -1,11 +1,28 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% if user.is_authenticated %}
+<div class="page-header">
+            <span style="color: white;margin-top: 20px;float: left;font-size:26pt;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <h1><a href="/blog/">My Blog</a></h1>
+ </div>
+<div class="personal_details">
+        {% if user.is_authenticated %}
         <div class="editB">
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
-    {% endif %}
+        {% endif %}
+
+            <div class="datails_frame">
+                <strong style="font-family: arial; margin-left: 30%;">Post Details:</strong>
+                <p><b>Author:<br></b></p>
+                <p>Admin</p>
+                <p><b>Created:<br></b></p>
+                <p>{{ post.created_date|timesince }} ago.</p>
+                <p><b>Last Updated:<br></b></p>
+                <p>{{ post.published_date|timesince }} ago.</p>
+            </div>
+</div>
+<div class="content">
     <div class="post">
         {% if post.published_date %}
             <div class="date">
@@ -14,6 +31,8 @@
         {% endif %}
 
         <h1>{{ post.title|title }}</h1>
-        <p>{{ post.text|linebreaks }}</p>
+        <hr>
+        <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ post.text|linebreaks }}</pre>
     </div>
+</div>
 {% endblock %}

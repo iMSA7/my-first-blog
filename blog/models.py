@@ -14,8 +14,22 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    def remove(self):
+        self.delete()
+
     def __str__(self):
         return self.title
 
-    def remove(self):
-        self.delete()
+class Cv(models.Model):
+    
+    name = models.CharField(max_length=50, default='None')
+    address = models.TextField(default='None')
+    telephone = models.CharField(max_length=15, default='None')
+    mobile = models.CharField(max_length=15, default='None')
+    email = models.CharField(max_length=50, default='None')
+    summary = models.TextField(default='None')
+    skills = models.TextField(default='None')
+
+    def __str__(self):
+        return self.name
+        

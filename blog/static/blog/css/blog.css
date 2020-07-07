@@ -1,6 +1,47 @@
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #6666ff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #ddddff;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
 .post p {
     font-family: 'helvetica';
     font-size:160%;
+    margin-left: 10px;
+    margin-bottom: 20px;
 }
 
 .personal_details {
@@ -12,18 +53,37 @@
  .frame {
   width: 240px;
   height: 240px;
-  border: 3px solid #ccc;
-  border-color: #666 #1c87c9;
-  background: #eee;
+  border: 3px solid #9999ff;
+  background: #ddddff;
   margin: auto;
   padding: 5px 5px;
   
 }
+
+.cvContent {
+  width: 90%;
+  height: 90%;
+  border: 3px solid #000000;
+  margin-left: 3%;
+  margin-top: 3%;
+  padding: 2% 2%;
+}
+
+.subTitle {
+  width: 100%;
+  border: 1px solid #000000;
+  background: #dddddd;
+  font-size: 18px;
+  padding: 2px 3px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .datails_frame {
   width: 100%;
   height: 360px;
-  border: 3px solid blue;
-  background: #ccccff;
+  border: 3px solid #9999ff;
+  background: #ddddff;
   margin: auto;
   padding: 5px 5px;
   margin-top: 20px;
@@ -37,9 +97,9 @@
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
-    font-family:courier,arial,helvetica;
-    
+    font-family:courier;
     font-size: 36pt;
+    margin-left: 20px;
     text-decoration: none;
 }
 
@@ -51,6 +111,8 @@
     color: #828282;
     font-family: 'times', bold;
     float: right;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 .save {
     float: right;
@@ -63,13 +125,19 @@
     float: right;
     font-size: 26pt;
     margin-right: 20px;
+    margin-top: 20px;
 }
 .editB {
     float: right;
+    margin-top: 30px;
+    margin-right: 20px;
 }
 .post {
-    margin-bottom: 140px;
+    margin-bottom: 20px;
+    border: 3px solid #9999ff;
+    background-color: #ddddff
 }
 .post h1, .post h2, .post h2 a, .post h2 a:visited {
     color: #000000;
+    margin-left: 5px;
     font-family: 'arial';

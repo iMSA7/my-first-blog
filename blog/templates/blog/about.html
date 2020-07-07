@@ -1,0 +1,71 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-header">
+            <span style="color: white;margin-top: 20px;float: left;font-size:26pt;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <h1><a href="/">About</a></h1>
+</div>
+<div class="personal_details">
+            <div class="frame">
+                <img src="{% static 'blog/images/me.jpg' %}" alt="me">
+            </div>
+            <div class="datails_frame">
+                <strong style="font-family: arial; margin-left: 25%;">Personal Details:</strong>
+                <p><b>Name:<br></b></p>
+                <p>Muhannad S Alghafis</p>
+                <p><b>Course Title:<br></b></p>
+                <p>Artificial Intelligence & Computer Science</p>
+                <p><b>Personal Email:<br></b></p>
+                <p>mohnad998@gmail.com</p>
+                <p><b>University Email:<br></b></p>
+                <p>msa718@student.bham.ac.uk</p>
+                <p><b>Github:<br></b></p>
+                <p><a href="https://github.com/iMSA7/my-first-blog">https://github.com/iMSA7/my-first-blog</a></p>
+            </div>
+</div>
+<div class="content">
+    <div class="post">
+<center><h1>My Blog</h1>
+<h2>University of Birmingham</h2>
+<h3>Bridging Coursework - Second Year (Summer 2020-21)</h3>
+</center>
+<hr>
+<p>This web application is part of the Bridging Coursework at the Univesity of Birmingham. It was created using <a href="https://www.djangoproject.com/">Django</a> web framework and hosted by <a href="https://www.pythonanywhere.com">Pythonanywhere</a>. I also followed <a href="https://tutorial.djangogirls.org/en/">Django Girls Tutorial</a> as a head start! You can view the source code at GitHub <a href="https://github.com/iMSA7/my-first-blog">here.</a></p>
+<h2>Navigation</h2>
+<hr>
+<p>You can start navigating the webaite through the button at the top-left corner:</p>
+<div style="font-size: 160%;">
+<ul>
+<li> <strong>About</strong>
+<ul>
+<li>brief explaination of the website.</li>
+<li>my personal details.</li>
+</ul>
+</li>
+<li> <strong>MyBlog</strong>
+<ul>
+<li>it is where all the posts are listed briefly.</li>
+<li>a post’s details and content can be viewed by clicking on it.</li>
+<li>a post can be added, edited or  deleted.</li>
+</ul>
+</li>
+<li> <strong> MyCV </strong>
+<ul>
+<li>view my CV</li>
+<li>edit my CV</li>
+</ul>
+</li>
+<li> <strong> Sources </strong>
+<ul>
+<li>full resources used to create the website.</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2>Contact</h2>
+<hr>
+<p>Please refer to the personal details on the right.</p>
+    </div>
+</div>
+{% endblock %}

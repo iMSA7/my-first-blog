@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <title>My CV</title>
+    </head>
+    <body>
+        <a href="/">back to website</a>
+        <div class="cvContent">
+        {% if user.is_authenticated %}
+        <div style="float: right;">
+            <a class="btn btn-default" href="{% url 'cv_edit' %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+        {% endif %}
+            <center><h2>{{ cv.name|title }}</h2></center>
+            <p style="float: right;margin-top: 0px;">Telephone: {{ cv.telephone}} <br> Mobile: {{ cv.mobile}}<br> Email: {{ cv.email}} </p>
+            <p style="float: left;margin-top: 0px;">{{ cv.address|linebreaks }}</p>
+            <h3>Personal Details</h3>
+            <br>
+            <div class="subTitle">
+                Summary
+            </div>
+            <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.summary|linebreaks }}</pre>
+            <div class="subTitle">
+                Skills and Achievements
+            </div>
+            <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.skills|linebreaks }}</pre>
+        </div>
+    </body>
+</html>

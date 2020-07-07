@@ -1,7 +1,29 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post
-from .forms import PostForm
+from .models import Post, Cv
+from .forms import PostForm, CvForm
+
+def about(request):
+    return render(request, 'blog/about.html')
+
+def myCV(request):
+    cv = get_object_or_404(Cv, pk=1)
+    return render(request, 'blog/myCV.html', {'cv': cv})
+
+def cv_edit(request):
+    cv = get_object_or_404(Cv, pk=1)
+    if request.method == "POST":
+        form = CvForm(request.POST, instance=cv)
+        if form.is_valid():
+            cv = form.save(commit=False)
+            cv.save()
+            return redirect('myCV')
+    else:
+        form = CvForm(instance=cv)
+    return render(request, 'blog/cv_edit.html', {'form': form})
+
+def sources(request):
+    return render(request, 'blog/sources.html')
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -37,7 +59,7 @@ def post_edit(request, pk):
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        post.delete()
+        post.remove()
         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
         return render(request, 'blog/post_list.html', {'posts': posts})
     return render(request, 'blog/post_edit.html')

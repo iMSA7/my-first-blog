@@ -1,6 +1,11 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+<div class="page-header">
+            <span style="color: white;margin-top: 20px;float: left;font-size:26pt;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <h1><a href="/blog/">My Blog</a></h1>
+ </div>
+<div class="content">
 {% if user.is_authenticated %}
     <h2 style="font-size: 26pt;font-family: 'arial';">New Post</h2>
     <form method="POST" class="post-form">{% csrf_token %}
@@ -8,6 +13,7 @@
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% else %}
-	<h1 style="color: red">You are not Authorised</h1>
+	<h1>You are not Authorised</h1>
 {% endif %}
+</div>
 {% endblock %}
