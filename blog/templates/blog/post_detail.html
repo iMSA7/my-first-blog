@@ -12,14 +12,13 @@
         </div>
         {% endif %}
 
-            <div class="datails_frame">
+            <div class="details_frame" style="height: 160px;">
                 <strong style="font-family: arial; margin-left: 30%;">Post Details:</strong>
-                <p><b>Author:<br></b></p>
-                <p>Admin</p>
+                
                 <p><b>Created:<br></b></p>
-                <p>{{ post.created_date|timesince }} ago.</p>
+                <p>{{ post.created_date|date:"SHORT_DATE_FORMAT" }}</p>
                 <p><b>Last Updated:<br></b></p>
-                <p>{{ post.published_date|timesince }} ago.</p>
+                <p>{{ post.published_date|date:"SHORT_DATE_FORMAT" }}</p>
             </div>
 </div>
 <div class="content">
