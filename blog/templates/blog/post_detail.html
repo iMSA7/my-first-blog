@@ -6,11 +6,11 @@
             <h1><a href="/blog/">My Blog</a></h1>
  </div>
 <div class="personal_details">
-        {% if user.is_authenticated %}
+
         <div class="editB">
-            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="edit" href="{% url 'post_edit' pk=post.pk %}"><button class="edit btn btn-default">Edit</button></a>
         </div>
-        {% endif %}
+        
 
             <div class="details_frame" style="height: 160px;">
                 <strong style="font-family: arial; margin-left: 30%;">Post Details:</strong>
@@ -29,7 +29,7 @@
             </div>
         {% endif %}
 
-        <h1>{{ post.title|title }}</h1>
+        <h2>{{ post.title|title }}</h2>
         <hr>
         <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ post.text|linebreaks }}</pre>
     </div>

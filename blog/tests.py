@@ -1,8 +1,13 @@
-import datetime
+import datetime, time
 from django.test import TestCase, Client
 from django.utils import timezone
 from django.urls import reverse
 from .models import Post
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class PostModelTests(TestCase):
@@ -50,12 +55,68 @@ class PostListViewTests(TestCase):
 		response = self.client.get(reverse('post_list'))
 		self.assertQuerysetEqual(response.context['posts'],['<Post: title>','<Post: title2>'])
 
+class completePostTests(TestCase):
 
-class PostEditViewTests(TestCase):
-	"""tests for Post Edit View"""
+	def test_add_edit_delete_post(self):
+		browser = webdriver.Chrome()
+		browser.get("http://msa7.pythonanywhere.com/post/new/")
+		titleForm = browser.find_element_by_name("title")
+		textForm = browser.find_element_by_name("text")
+		titleForm.send_keys("title passed")
+		textForm.send_keys("text passed")
+		titleForm.send_keys(Keys.RETURN)
+		title = browser.find_element_by_tag_name("h2").text
+		self.assertTrue("Title Passed" in title)
+		editButton = browser.find_element_by_tag_name("button")
+		editButton.click()
+		titleForm = browser.find_element_by_name("title")
+		titleForm.send_keys(" again")
+		titleForm.send_keys(Keys.RETURN)
+		title = browser.find_element_by_tag_name("h2").text
+		self.assertTrue("Title Passed Again" in title)
+		editButton = browser.find_element_by_tag_name("button")
+		editButton.click()
+		deleteButton = browser.find_element_by_id("delete")
+		deleteButton.click()
+		self.assertFalse("Title Passed Again" in browser.page_source)
+		browser.quit()
+
+	
+class CvTests(TestCase):
+	
+	def test_edit_cv(self):
+		browser = webdriver.Chrome()
+		browser.get("http://msa7.pythonanywhere.com/myCV/edit/")
+		Telephone = browser.find_element_by_name("telephone")
+		copy = Telephone.get_attribute("value")
+		for item in copy:
+			Telephone.send_keys(Keys.BACKSPACE)
+		Telephone.send_keys("test passed")
+		Telephone.send_keys(Keys.RETURN)
+		contact = browser.find_element_by_tag_name("p").text
+		browser.get("http://msa7.pythonanywhere.com/myCV/edit/")
+		Telephone = browser.find_element_by_name("telephone")
+		for item in Telephone.get_attribute("value"):
+			Telephone.send_keys(Keys.BACKSPACE)
+		Telephone.send_keys(copy)
+		Telephone.send_keys(Keys.RETURN)
+		self.assertTrue("test passed" in contact)
+		browser.quit()
+
+
+"""
+the following tests are deactivated as these safety
+features are disabled to allow assessment team to test
+other features such as editing and adding new posts.
+"""
+
+class PostEditViewTests():
+	"""
+	tests for Post Edit View.
+	"""
 	def test_not_authorised_edit(self):
 		"""
-		not authorised client should not be allowed to edit a post and an appropriate message will be displayed
+		not authorised client should not be allowed to edit a post.
 		"""
 		post = Post(title="title", text="text")
 		post.publish()
@@ -64,6 +125,9 @@ class PostEditViewTests(TestCase):
 		self.assertContains(response, "You are not Authorised")
 
 	def test_not_authorised_delete(self):
+		"""
+		not authorised client should not be allowed to delete a post.
+		"""
 		post = Post(title="title", text="text")
 		post.publish()
 		response = self.client.get(reverse('post_delete', args=(post.id,)))

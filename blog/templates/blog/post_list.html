@@ -3,11 +3,18 @@
 
 {% block content %}
 <div class="page-header">
-            {% if user.is_authenticated %}
+            
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            {% endif %}
+            
             <span style="color: white;margin-top: 20px;float: left;font-size:26pt;cursor:pointer" onclick="openNav()">&#9776;</span>
             <h1><a href="/blog/">My Blog</a></h1>
+</div>
+<div class="personal_details">
+            <div class="details_frame" style="height: 160px;">
+                <strong style="font-family: arial; margin-left: 40%;">Note:</strong>
+                <p style="margin-left: 2px;">You can add a post by clicking on the plus sign at the top-right corner.</p>
+                
+            </div>
 </div>
 <div class="content">
 
