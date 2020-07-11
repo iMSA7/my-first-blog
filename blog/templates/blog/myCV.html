@@ -15,14 +15,14 @@
         <a href="/">back to website</a>
         <div class="cvContent">
         
-        <div style="float: right;">
+            <div style="float: right;">
             <a class="btn btn-default" href="{% url 'cv_edit' %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        </div>
+            </div>
         
             <center><h2>{{ cv.name|title }}</h2></center>
             <p style="float: right;margin-top: 0px;">Telephone: {{ cv.telephone}} <br> Mobile: {{ cv.mobile}}<br> Email: {{ cv.email}} </p>
             <p style="float: left;margin-top: 0px;">{{ cv.address|linebreaks }}</p>
-            <h3>Personal Details</h3>
+            <h3 style="margin-top: 3%;">Personal Details</h3>
             <br>
             <div class="subTitle">
                 Summary
