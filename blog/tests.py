@@ -11,13 +11,19 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class PostModelTests(TestCase):
-
+	
 	def test_post_publish(self):
+		"""
+		test for method post.publish()
+		"""
 		post = Post(title="title", text="text")
 		post.publish()
 		self.assertEqual(Post.objects.count(),1)
 
 	def test_post_remove(self):
+		"""
+		test for method post.remove()
+		"""
 		post = Post(title="title", text="text")
 		post.publish()
 		self.assertEqual(Post.objects.count(),1)
@@ -58,6 +64,9 @@ class PostListViewTests(TestCase):
 class completePostTests(TestCase):
 
 	def test_add_edit_delete_post(self):
+		"""
+		tests  for editing, adding and deleting a post.
+		"""
 		browser = webdriver.Chrome()
 		browser.get("http://msa7.pythonanywhere.com/post/new/")
 		titleForm = browser.find_element_by_name("title")
@@ -85,6 +94,9 @@ class completePostTests(TestCase):
 class CvTests(TestCase):
 	
 	def test_edit_cv(self):
+		"""
+		tests whether editing the cv gets applied
+		"""
 		browser = webdriver.Chrome()
 		browser.get("http://msa7.pythonanywhere.com/myCV/edit/")
 		Telephone = browser.find_element_by_name("telephone")
@@ -103,6 +115,26 @@ class CvTests(TestCase):
 		self.assertTrue("test passed" in contact)
 		browser.quit()
 
+	def test_None_fields_in_CV(self):
+		"""
+		if a field in the cv is  None it should  not be displayed
+		"""
+		browser = webdriver.Chrome()
+		browser.get("http://msa7.pythonanywhere.com/myCV/edit/")
+		referees = browser.find_element_by_id("id_referees")
+		Telephone = browser.find_element_by_name("telephone")
+		copy = referees.get_attribute("value")
+		referees.clear()
+		referees.send_keys("None")
+		Telephone.send_keys(Keys.RETURN)
+		browser.get("http://msa7.pythonanywhere.com/myCV/edit/")
+		referees = browser.find_element_by_id("id_referees")
+		referees.clear()
+		referees.send_keys(copy)
+		Telephone = browser.find_element_by_name("telephone")
+		Telephone.send_keys(Keys.RETURN)
+		self.assertTrue("test passed" not in browser.page_source)
+		browser.quit()
 
 """
 the following tests are deactivated as these safety

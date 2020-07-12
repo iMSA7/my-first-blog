@@ -24,14 +24,49 @@
             <p style="float: left;margin-top: 0px;">{{ cv.address|linebreaks }}</p>
             <h3 style="margin-top: 3%;">Personal Details</h3>
             <br>
+            
+            {% if cv.summary != "None" %}
             <div class="subTitle">
                 Summary
             </div>
             <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.summary|linebreaks }}</pre>
+            {% endif %}
+            {% if cv.skills != "None" %}
             <div class="subTitle">
                 Skills and Achievements
             </div>
             <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.skills|linebreaks }}</pre>
+            {% endif %}
+            {% if cv.education != "None" %}
+            <div class="subTitle">
+                Education and Qualifications
+            </div>
+            <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.education|linebreaks }}</pre>
+            {% endif %}
+            {% if cv.work != "None" %}
+            <div class="subTitle">
+                Work History
+            </div>
+            <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.work|linebreaks }}</pre>
+            {% endif %}
+            {% if cv.voluntary != "None" %}
+            <div class="subTitle">
+                Voluntary Experience
+            </div>
+            <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.voluntary|linebreaks }}</pre>
+            {% endif %}
+            {% if cv.interests != "None" %}
+            <div class="subTitle">
+                Interests
+            </div>
+            <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.interests|linebreaks }}</pre>
+            {% endif %}
+            {% if cv.referees != "None" %}
+            <div class="subTitle">
+                Referees
+            </div>
+            <pre style="background: initial;border: initial;white-space: pre-wrap;">{{ cv.referees|linebreaks }}</pre>
+            {% endif %}
         </div>
     </body>
 </html>

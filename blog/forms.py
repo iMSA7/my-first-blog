@@ -12,6 +12,6 @@ class CvForm(forms.ModelForm):
 
 	class Meta:
 		model = Cv
-		fields = ('name','address','telephone','mobile','email','summary', 'skills')
+		fields = ('name','address','telephone','mobile','email','summary', 'skills','education','work','voluntary', 'interests', 'referees')
 			
 		

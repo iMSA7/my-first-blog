@@ -28,6 +28,11 @@ class Cv(models.Model):
     email = models.CharField(max_length=50, default='None')
     summary = models.TextField(default='None')
     skills = models.TextField(default='None')
+    education = models.TextField(default='None')
+    work = models.TextField(default='None')
+    voluntary = models.TextField(default='None')
+    interests = models.TextField(default='None')
+    referees = models.TextField(default='None')
 
     def __str__(self):
         return self.name
