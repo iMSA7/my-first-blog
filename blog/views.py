@@ -25,7 +25,8 @@ def cv_new(request):
             form = CvForm()
         return render(request, 'blog/cv_new.html', {'form': form})
     else:
-        return render(request, 'blog/myCV.html')
+        cv = Cv.objects.all()[0]
+        return render(request, 'blog/myCV.html', {'cv': cv})
 
 def cv_edit(request):
     if Cv.objects.all().count() == 1:
@@ -40,8 +41,7 @@ def cv_edit(request):
             form = CvForm(instance=cv)
         return render(request, 'blog/cv_edit.html', {'form': form})
     else:
-        cv = Cv.objects.all()[0]
-        return render(request, 'blog/myCV.html', {'cv': cv})
+        return render(request, 'blog/myCV.html')
 
 def cv_delete(request):
     if request.method == "POST":
@@ -88,8 +88,7 @@ def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         post.remove()
-        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-        return render(request, 'blog/post_list.html', {'posts': posts})
+        return redirect('post_list')
     return render(request, 'blog/post_edit.html')
 
 
