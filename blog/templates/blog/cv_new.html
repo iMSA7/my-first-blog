@@ -13,14 +13,10 @@
     </head>
     <body>
     <div class="content">
-    <h2 style="font-size: 26pt;font-family: 'arial';">Edit Details</h2>
+    <h2 style="font-size: 26pt;font-family: 'arial';">New CV</h2>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
-    </form>
-
-    <form action="delete/" method="post">{% csrf_token %}
-        <button id="delete" type="submit" class="delete btn btn-default">Delete</button>
     </form>
     
     </div>

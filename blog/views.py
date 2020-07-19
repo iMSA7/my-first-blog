@@ -7,20 +7,48 @@ def about(request):
     return render(request, 'blog/about.html')
 
 def myCV(request):
-    cv = get_object_or_404(Cv, pk=1)
-    return render(request, 'blog/myCV.html', {'cv': cv})
+    if Cv.objects.all().count() == 1:
+        cv = Cv.objects.all()[0]
+        return render(request, 'blog/myCV.html', {'cv': cv})
+    else:
+        return render(request, 'blog/myCV.html')
+
+def cv_new(request):
+    if Cv.objects.all().count() == 0:
+        if request.method == "POST":
+            form = CvForm(request.POST)
+            if form.is_valid():
+                cv = form.save(commit=False)
+                cv.save()
+                return redirect('myCV')
+        else:
+            form = CvForm()
+        return render(request, 'blog/cv_new.html', {'form': form})
+    else:
+        return render(request, 'blog/myCV.html')
 
 def cv_edit(request):
-    cv = get_object_or_404(Cv, pk=1)
-    if request.method == "POST":
-        form = CvForm(request.POST, instance=cv)
-        if form.is_valid():
-            cv = form.save(commit=False)
-            cv.save()
-            return redirect('myCV')
+    if Cv.objects.all().count() == 1:
+        cv = Cv.objects.all()[0]
+        if request.method == "POST":
+            form = CvForm(request.POST, instance=cv)
+            if form.is_valid():
+                cv = form.save(commit=False)
+                cv.save()
+                return redirect('myCV')
+        else:
+            form = CvForm(instance=cv)
+        return render(request, 'blog/cv_edit.html', {'form': form})
     else:
-        form = CvForm(instance=cv)
-    return render(request, 'blog/cv_edit.html', {'form': form})
+        cv = Cv.objects.all()[0]
+        return render(request, 'blog/myCV.html', {'cv': cv})
+
+def cv_delete(request):
+    if request.method == "POST":
+        cv = Cv.objects.all()[0]
+        cv.delete()
+        return redirect('myCV')
+    return render(request, 'blog/cv_edit.html')
 
 def sources(request):
     return render(request, 'blog/sources.html')
